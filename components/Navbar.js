@@ -3,9 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { usePlan } from "@/context/PlanContext";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { plan, saved } = usePlan();
 
   return (
     <nav className="flex items-center justify-between px-6 py-4 border-b border-cardborder">
@@ -31,10 +33,10 @@ export default function Navbar() {
 
       <div className="flex items-center gap-3 text-sm">
         <Link href="/my-plan" className="bg-accent text-black px-3 py-1 rounded-full font-semibold">
-          Plan 0
+          Plan {plan.length}
         </Link>
         <Link href="/my-plan" className="border border-gray-500 px-3 py-1 rounded-full">
-          Saved 0
+          Saved {saved.length}
         </Link>
       </div>
     </nav>
