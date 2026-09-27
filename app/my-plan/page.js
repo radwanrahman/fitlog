@@ -83,7 +83,7 @@ function PlanRow({ workout, isToday }) {
   const { removeFromPlan, removeFromSaved, markAsDone } = usePlan();
 
   return (
-    <div className="flex items-center justify-between bg-card border border-cardborder rounded-lg p-3">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-card border border-cardborder rounded-lg p-3">
       <div className="flex items-center gap-3">
         <img src={workout.image} alt={workout.name} className="w-14 h-14 rounded object-cover" />
         <div>
@@ -97,7 +97,7 @@ function PlanRow({ workout, isToday }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 flex-wrap">
         <Link
           href={`/workouts/${workout.id}`}
           className="border border-gray-500 text-xs px-3 py-1 rounded"

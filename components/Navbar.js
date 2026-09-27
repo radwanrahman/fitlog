@@ -10,7 +10,7 @@ export default function Navbar() {
   const { plan, saved } = usePlan();
 
   return (
-    <nav className="flex items-center justify-between px-6 py-4 border-b border-cardborder">
+    <nav className="flex flex-col md:flex-row items-center justify-between gap-3 px-6 py-4 border-b border-cardborder">
       <Link href="/" className="flex items-center gap-2">
         <Image src="/assets/logo.png" alt="FitLog logo" width={24} height={24} />
         <span className="font-bold tracking-wide">FITLOG</span>
