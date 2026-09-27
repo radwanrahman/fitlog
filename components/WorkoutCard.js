@@ -6,7 +6,7 @@ export default function WorkoutCard({ workout }) {
       href={`/workouts/${workout.id}`}
       className="bg-card border border-cardborder rounded-lg overflow-hidden hover:border-accent transition"
     >
-      <img src={workout.image} alt={workout.name} className="w-full h-36 object-cover" />
+      <img src={workout.image} alt={workout.name} className="w-full h-44 object-cover" />
       <div className="p-3">
         <div className="flex gap-2 mb-2">
           {workout.muscleGroups.map((tag) => (
