@@ -21,7 +21,7 @@ export default function MyPlan() {
         Cap of five lifts for today. Finish them, then load more.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-3 bg-card border border-cardborder rounded-lg mb-8">
         <StatCard label="Exercises" value={plan.length} />
         <StatCard label="Minutes" value={totalMinutes} />
         <StatCard label="Calories" value={totalCalories} />
@@ -59,7 +59,7 @@ export default function MyPlan() {
 
 function StatCard({ label, value }) {
   return (
-    <div className="bg-card border border-cardborder rounded-lg p-4 text-center">
+    <div className="p-4 text-left border-r border-cardborder last:border-r-0 sm:border-r sm:last:border-r-0">
       <p className="text-2xl font-extrabold text-accent">{value}</p>
       <p className="text-xs text-gray-400 uppercase">{label}</p>
     </div>
@@ -70,8 +70,8 @@ function TabButton({ active, onClick, children }) {
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-1 rounded text-sm ${
-        active ? "bg-accent text-black font-semibold" : "border border-gray-500 text-gray-300"
+      className={`text-sm pb-1 border-b-2 ${
+        active ? "text-accent border-accent font-semibold" : "text-gray-400 border-transparent"
       }`}
     >
       {children}
