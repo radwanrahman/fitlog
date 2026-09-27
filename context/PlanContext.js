@@ -1,29 +1,40 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useMemo, useSyncExternalStore } from "react";
 
 const PlanContext = createContext();
 
+const listeners = new Set();
+
+function subscribe(callback) {
+  listeners.add(callback);
+  window.addEventListener("storage", callback);
+  return () => {
+    listeners.delete(callback);
+    window.removeEventListener("storage", callback);
+  };
+}
+
+function writeList(key, list) {
+  localStorage.setItem(key, JSON.stringify(list));
+  listeners.forEach((callback) => callback());
+}
+
+function useStoredList(key) {
+  const raw = useSyncExternalStore(
+    subscribe,
+    () => localStorage.getItem(key) || "[]",
+    () => "[]"
+  );
+  return useMemo(() => JSON.parse(raw), [raw]);
+}
+
 export function PlanProvider({ children }) {
-  const [plan, setPlan] = useState([]);
-  const [saved, setSaved] = useState([]);
-  const [loaded, setLoaded] = useState(false);
+  const plan = useStoredList("fitlog-plan");
+  const saved = useStoredList("fitlog-saved");
 
-  useEffect(() => {
-    const savedPlan = localStorage.getItem("fitlog-plan");
-    const savedSaved = localStorage.getItem("fitlog-saved");
-    if (savedPlan) setPlan(JSON.parse(savedPlan));
-    if (savedSaved) setSaved(JSON.parse(savedSaved));
-    setLoaded(true);
-  }, []);
-
-  useEffect(() => {
-    if (loaded) localStorage.setItem("fitlog-plan", JSON.stringify(plan));
-  }, [plan, loaded]);
-
-  useEffect(() => {
-    if (loaded) localStorage.setItem("fitlog-saved", JSON.stringify(saved));
-  }, [saved, loaded]);
+  const setPlan = (list) => writeList("fitlog-plan", list);
+  const setSaved = (list) => writeList("fitlog-saved", list);
 
   function addToPlan(workout) {
     const alreadyIn = plan.find((item) => item.id === workout.id);
