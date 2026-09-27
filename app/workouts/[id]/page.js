@@ -2,9 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { usePlan } from "@/context/PlanContext";
+import toast from "react-hot-toast";
 
 export default function WorkoutDetail() {
   const { id } = useParams();
+  const { addToPlan, saveForLater } = usePlan();
   const [workout, setWorkout] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -62,10 +65,24 @@ export default function WorkoutDetail() {
         </ol>
 
         <div className="flex gap-3">
-          <button className="bg-accent text-black font-semibold px-4 py-2 rounded">
+          <button
+            onClick={() => {
+              const added = addToPlan(workout);
+              if (added) toast.success("Added to today's plan");
+              else toast("Already in your plan");
+            }}
+            className="bg-accent text-black font-semibold px-4 py-2 rounded"
+          >
             Add to today&apos;s plan
           </button>
-          <button className="border border-gray-500 px-4 py-2 rounded">
+          <button
+            onClick={() => {
+              const added = saveForLater(workout);
+              if (added) toast.success("Saved for later");
+              else toast("Already saved");
+            }}
+            className="border border-gray-500 px-4 py-2 rounded"
+          >
             Save for later
           </button>
         </div>
