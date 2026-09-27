@@ -1,0 +1,3 @@
+export default function Loading() {
+  return <p className="p-10 text-gray-400">Loading workout...</p>;
+}
