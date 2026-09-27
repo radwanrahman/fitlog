@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FitLog
 
-## Getting Started
+FitLog is a workout library website I built for my Next.js course assignment. It shows a list of workouts, lets you check the details of each one, and lets you plan what to do today or save workouts for later.
 
-First, run the development server:
+## What I used to build this
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Next.js (App Router)
+- Tailwind CSS for styling
+- React Context to keep track of the plan and saved list across pages
+- localStorage so the plan doesn't disappear when you refresh the page
+- react-hot-toast for the small pop-up notifications
+- A public API for the workout data
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Browse a library of 12 workouts, each with a photo, category tags, equipment, and stats (time, calories, rating).
+2. Click any workout to see a full detail page with instructions and specs.
+3. Add a workout to "today's plan" or save it for later, with a toast message confirming it.
+4. A My Plan page that shows your added workouts, tracks total exercises/minutes/calories, and lets you mark workouts as done or remove them.
+5. Sort the library by duration, calories, or rating using a dropdown.
+6. Works on phone, tablet, and desktop screens.
+7. A custom 404 page for any page that doesn't exist.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Notes
 
-## Learn More
+- The workout images used inside the app come from the public API, not made by me.
+- Padding and spacing may not match the Figma design pixel-for-pixel, but the layout and structure follow it closely.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Live Link
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+https://fitlogappbasic.netlify.app/
 
-## Deploy on Vercel
+## GitHub Repository
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+https://github.com/radwanrahman/fitlog
